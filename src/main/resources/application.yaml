@@ -1,21 +1,24 @@
 spring:
   data:
     mongodb:
-      uri: ${MENU_MONGO_URL:mongodb://localhost:27071/menu}
-    kafka:
-      topic: "menu-created-event"
-      ordertopic: "order-event"
-      cancelorder: "cancelorder"
-      ordereventconsumer:
-        group-id: order-service-listeners
-      ordercancelconsumer:
-        group-id: order-cancel-listeners
-      producer:
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.apache.kafka.common.serialization.StringSerializer
-        properties[request.timeout.ms]: 600000
-      admin:
-        properties:
-          bootstrap-servers: kafka-service:9092
-      bootstrap-servers: kafka-service:9092
+      uri: ${ITEM_DB_HOST:mongodb://localhost:27071/item}
+  kafka:
+    topic: "item-created-event"
+    ordertopic: "order-event"
+    cancelorder: "cancelorder"
+    ordereventconsumer:
+      group-id: order-service-listeners
+    ordercancelconsumer:
+      group-id: order-cancel-listeners
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties[request.timeout.ms]: 600000
+    admin:
+      properties:
+        bootstrap-servers: kafka-service:9092
+    bootstrap-servers: kafka-service:9092
+
+server:
+  port: 8082
 
