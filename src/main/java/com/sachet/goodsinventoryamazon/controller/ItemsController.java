@@ -1,5 +1,6 @@
 package com.sachet.goodsinventoryamazon.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sachet.goodsinventoryamazon.model.Item;
 import com.sachet.goodsinventoryamazon.service.InventoryService;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ItemsController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Item> saveItem(@RequestBody Item item){
+    public ResponseEntity<Item> saveItem(@RequestBody Item item) throws JsonProcessingException {
         return ResponseEntity.ok(inventoryService.saveItem(item));
     }
 
