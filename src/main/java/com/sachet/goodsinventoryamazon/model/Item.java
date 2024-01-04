@@ -22,6 +22,7 @@ public class Item {
     private Integer userId;
     private String orderId;
     private String category;
+    private int totalQuantity;
     private List<String> imageURL;
 
 

@@ -40,7 +40,7 @@ public class ItemCreatedPublisher {
 
     public CompletableFuture<SendResult<String, String>> sendItemCreatedEvent(Item item) throws JsonProcessingException {
         String key = item.getId();
-        ItemPublish itemPublish = new ItemPublish(item.getId(), item.getPrice(), item.getProductName());
+        ItemPublish itemPublish = new ItemPublish(item.getId(), item.getPrice(), item.getProductName(), item.getTotalQuantity());
         String rawItem = objectMapper.writeValueAsString(itemPublish);
         LOGGER.info("Send kafka event, for item created event "+rawItem);
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_NAME, key, rawItem);

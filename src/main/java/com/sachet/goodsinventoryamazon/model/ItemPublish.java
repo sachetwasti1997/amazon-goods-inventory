@@ -9,7 +9,7 @@ public class ItemPublish {
 
     private String itemId;
     private int price;
-
     private String title;
+    private int totalQuantity;
 
 }
