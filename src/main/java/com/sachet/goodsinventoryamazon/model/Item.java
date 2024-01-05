@@ -18,9 +18,7 @@ public class Item {
     private String id;
     private String productName;
     private String productDescription;
-    private Integer price;
-    private Integer userId;
-    private String orderId;
+    private Double price;
     private String category;
     private int totalQuantity;
     private List<String> imageURL;

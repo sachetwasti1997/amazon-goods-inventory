@@ -8,7 +8,7 @@ import lombok.Getter;
 public class ItemPublish {
 
     private String itemId;
-    private int price;
+    private Double price;
     private String title;
     private int totalQuantity;
 

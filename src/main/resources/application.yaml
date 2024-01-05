@@ -4,12 +4,14 @@ spring:
       uri: ${ITEM_DB_HOST:mongodb://localhost:27071/item}
   kafka:
     topic: "item-created-event"
-    ordertopic: "order-event"
-    cancelorder: "cancelorder"
+    cancelordertopic: "cancelorder"
+    ordercreatedtopic: "orderevent"
     ordereventconsumer:
       group-id: order-service-listeners
     ordercancelconsumer:
       group-id: order-cancel-listeners
+    orderexpiredconsumer:
+      group-id: order-expired-item-consumers
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer

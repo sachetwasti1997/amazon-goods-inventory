@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/item")
 public class ItemsController {
@@ -24,7 +26,12 @@ public class ItemsController {
 
     @PutMapping("/addImage/{itemId}")
     public ResponseEntity<Item> addImage(@PathVariable String itemId,
-                                         @RequestParam("file")MultipartFile file) {
+                                         @RequestParam("file")MultipartFile file) throws Exception {
         return ResponseEntity.ok(inventoryService.addImage(file, itemId));
+    }
+
+    @GetMapping("/test/all")
+    public ResponseEntity<List<Item>> getAllItem() {
+        return ResponseEntity.ok(inventoryService.getAllItem());
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InventoryService {
@@ -30,15 +31,20 @@ public class InventoryService {
         return savedItem;
     }
 
-    public Item addImage(MultipartFile file, String itemId) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("id").is(itemId));
-        List<Item> item = itemsRepository.get(query);
-        Item requiredItem = item.get(0);
+    public Item addImage(MultipartFile file, String itemId) throws Exception {
+        Optional<Item> item = itemsRepository.findById(itemId);
+        if (item.isEmpty()) {
+            throw new Exception("Cannot find item");
+        }
+        Item requiredItem = item.get();
         /*
         Logic to save file to some remote location and add it to
         URL list in the Item document
          */
         return itemsRepository.save(requiredItem);
+    }
+
+    public List<Item> getAllItem() {
+        return itemsRepository.findAll();
     }
 }
