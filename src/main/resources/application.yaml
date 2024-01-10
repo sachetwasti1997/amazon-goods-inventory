@@ -6,12 +6,8 @@ spring:
     topic: "item-created-event"
     cancelordertopic: "cancelorder"
     ordercreatedtopic: "orderevent"
-    ordereventconsumer:
-      group-id: order-service-listeners
-    ordercancelconsumer:
-      group-id: order-cancel-listeners
-    orderexpiredconsumer:
-      group-id: order-expired-item-consumers
+    itemserviceconsumer:
+      group-id: item-service-listeners
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
