@@ -24,11 +24,11 @@ public class ConsumerConfig {
     public ConsumerConfig(
             @Value("${spring.kafka.bootstrap-servers}")
             String bootstrapServer,
-            @Value("${spring.kafka.ordereventconsumer.group-id}")
+            @Value("${spring.kafka.itemserviceconsumer.group-id}")
             String orderCreatedConsumerGroup,
-            @Value("${spring.kafka.ordercancelconsumer.group-id}")
+            @Value("${spring.kafka.itemserviceconsumer.group-id}")
             String orderCancelledConsumerGroup,
-            @Value("${spring.kafka.orderexpiredconsumer.group-id}")
+            @Value("${spring.kafka.itemserviceconsumer.group-id}")
             String orderExpiredConsumerGroup) {
         this.bootstrapServer = bootstrapServer;
         this.orderCreatedConsumerGroup = orderCreatedConsumerGroup;

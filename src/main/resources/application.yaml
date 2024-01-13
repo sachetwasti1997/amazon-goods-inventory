@@ -6,6 +6,7 @@ spring:
     topic: "item-created-event"
     cancelordertopic: "cancelorder"
     ordercreatedtopic: "orderevent"
+    expireordertopic: "expireorder"
     itemserviceconsumer:
       group-id: item-service-listeners
     producer:
