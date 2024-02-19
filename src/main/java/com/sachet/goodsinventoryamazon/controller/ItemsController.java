@@ -25,7 +25,7 @@ public class ItemsController {
     }
 
     @PutMapping("/addImage/{itemId}")
-    public ResponseEntity<Item> addImage(@PathVariable String itemId,
+    public ResponseEntity<String> addImage(@PathVariable String itemId,
                                          @RequestParam("file")MultipartFile file) throws Exception {
         return ResponseEntity.ok(inventoryService.addImage(file, itemId));
     }
