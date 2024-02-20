@@ -1,4 +1,8 @@
 spring:
+  cloud:
+    gcp:
+      credentials:
+        location: classpath:/fullstackapplications.json
   data:
     mongodb:
       uri: ${ITEM_DB_HOST:mongodb://localhost:27071/item}
