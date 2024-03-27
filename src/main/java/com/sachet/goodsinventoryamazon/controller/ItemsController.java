@@ -30,8 +30,8 @@ public class ItemsController {
         return ResponseEntity.ok(inventoryService.addImage(file, itemId));
     }
 
-    @GetMapping("/test/all")
-    public ResponseEntity<List<Item>> getAllItem() {
-        return ResponseEntity.ok(inventoryService.getAllItem());
+    @GetMapping("/items/{userId}")
+    public ResponseEntity<List<Item>> getAllItem(@PathVariable String userId) {
+        return ResponseEntity.ok(inventoryService.getAllItem(userId));
     }
 }

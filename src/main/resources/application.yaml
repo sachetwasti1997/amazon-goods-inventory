@@ -25,5 +25,7 @@ spring:
 server:
   port: 8082
 
-bucket_name: ${BUCKET_NAME:""}
+aws_bucket_name: ${AWS_BUCKET_NAME:""}
+aws_access_key: ${AWS_S3_ACCESS_KEY:""}
+aws_secret_key: ${AWS_S3_SECRET_KEY:""}
 

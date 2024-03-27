@@ -16,12 +16,12 @@ import java.util.List;
 public class Item {
 
     private String id;
+    private String userId;
     private String productName;
     private String productDescription;
     private Double price;
     private String category;
     private int totalQuantity;
     private List<String> imageURL;
-
 
 }
