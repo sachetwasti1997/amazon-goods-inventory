@@ -32,9 +32,11 @@ public class InventoryService {
         this.awsUtils = awsUtils;
     }
 
-    public Item saveItem(Item item) throws JsonProcessingException {
+    public Item saveItem(Item item, MultipartFile file) throws Exception {
         Item savedItem = itemsRepository.save(item);
         itemCreatedPublisher.sendItemCreatedEvent(savedItem);
+        if (file != null)
+            addImage(file, savedItem.getId());
         return savedItem;
     }
 
@@ -61,7 +63,7 @@ public class InventoryService {
 
     public List<Item> getAllItem(String userId) {
         List<Item> items = itemsRepository.findAll();
-        items = items.stream().filter(item -> !item.getUserId().equals(userId)).toList();
+        items = items.stream().filter(item -> item.getUserId() == null || !item.getUserId().equals(userId)).toList();
         return items;
     }
 }

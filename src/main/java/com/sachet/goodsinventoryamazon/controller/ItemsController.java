@@ -20,8 +20,8 @@ public class ItemsController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Item> saveItem(@RequestBody Item item) throws JsonProcessingException {
-        return ResponseEntity.ok(inventoryService.saveItem(item));
+    public ResponseEntity<Item> saveItem(@RequestPart("data") Item item, @RequestPart("file") MultipartFile file) throws Exception {
+        return ResponseEntity.ok(inventoryService.saveItem(item, file));
     }
 
     @PutMapping("/addImage/{itemId}")
