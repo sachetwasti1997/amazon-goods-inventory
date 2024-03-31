@@ -32,15 +32,23 @@ public class InventoryService {
         this.awsUtils = awsUtils;
     }
 
+    public Item findById(String itemId) throws Exception {
+        Optional<Item> item = itemsRepository.findById(itemId);
+        if (item.isEmpty()) {
+            throw new Exception("No Item Found with given Id");
+        }
+        return item.get();
+    }
+
     public Item saveItem(Item item, MultipartFile file) throws Exception {
         Item savedItem = itemsRepository.save(item);
         itemCreatedPublisher.sendItemCreatedEvent(savedItem);
         if (file != null)
-            addImage(file, savedItem.getId());
+            return addImage(file, savedItem.getId());
         return savedItem;
     }
 
-    public String addImage(MultipartFile file, String itemId) throws Exception {
+    public Item addImage(MultipartFile file, String itemId) throws Exception {
         Optional<Item> item = itemsRepository.findById(itemId);
         if (item.isEmpty()) {
             throw new Exception("Cannot find item");
@@ -57,13 +65,14 @@ public class InventoryService {
         }
         list.add(path);
         requiredItem.setImageURL(list);
-        itemsRepository.save(requiredItem);
-        return path;
+        return itemsRepository.save(requiredItem);
     }
 
     public List<Item> getAllItem(String userId) {
-        List<Item> items = itemsRepository.findAll();
-        items = items.stream().filter(item -> item.getUserId() == null || !item.getUserId().equals(userId)).toList();
-        return items;
+        return itemsRepository.findByUserIdIsNot(userId);
+    }
+
+    public List<Item> getAllItemOfUser(String userId) {
+        return itemsRepository.findByUserId(userId);
     }
 }

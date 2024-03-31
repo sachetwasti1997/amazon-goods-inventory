@@ -17,6 +17,8 @@ public class Item {
 
     private String id;
     private String userId;
+    public String userEmail;
+    public String userContact;
     private String productName;
     private String productDescription;
     private Double price;

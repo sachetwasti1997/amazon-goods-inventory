@@ -44,7 +44,7 @@ public class OrderExpiredConsumer implements AcknowledgingMessageListener<String
             //Add the reserved item back to item
             Item savedItem = item.orElseThrow();
             savedItem.setTotalQuantity(savedItem.getTotalQuantity() + modal.getOrderQuantity());
-
+            LOGGER.info("SAVING EXPIRED EVENT {}", savedItem);
             //save the item and acknowledge
             assert acknowledgment != null;
             repository.save(savedItem);

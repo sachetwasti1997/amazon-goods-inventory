@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface ItemsRepository extends MongoRepository<Item, String> {
-
+    List<Item> findByUserIdIsNot(String id);
+    List<Item> findByUserId(String userId);
 }

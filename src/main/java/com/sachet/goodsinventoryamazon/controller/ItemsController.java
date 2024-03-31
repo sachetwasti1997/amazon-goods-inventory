@@ -25,7 +25,7 @@ public class ItemsController {
     }
 
     @PutMapping("/addImage/{itemId}")
-    public ResponseEntity<String> addImage(@PathVariable String itemId,
+    public ResponseEntity<Item> addImage(@PathVariable String itemId,
                                          @RequestParam("file")MultipartFile file) throws Exception {
         return ResponseEntity.ok(inventoryService.addImage(file, itemId));
     }
@@ -33,5 +33,15 @@ public class ItemsController {
     @GetMapping("/items/{userId}")
     public ResponseEntity<List<Item>> getAllItem(@PathVariable String userId) {
         return ResponseEntity.ok(inventoryService.getAllItem(userId));
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Item>> getAllUserItem(@PathVariable String userId) {
+        return ResponseEntity.ok(inventoryService.getAllItemOfUser(userId));
+    }
+
+    @GetMapping("/get/{itemId}")
+    public ResponseEntity<Item> getItem(@PathVariable String itemId) throws Exception {
+        return ResponseEntity.ok(inventoryService.findById(itemId));
     }
 }
