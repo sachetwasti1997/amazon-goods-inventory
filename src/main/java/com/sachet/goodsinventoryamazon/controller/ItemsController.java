@@ -24,6 +24,11 @@ public class ItemsController {
         return ResponseEntity.ok(inventoryService.saveItem(item, file));
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<Item> updateItem(@RequestBody Item item) throws Exception {
+        return ResponseEntity.ok(inventoryService.saveItem(item, null));
+    }
+
     @PutMapping("/addImage/{itemId}")
     public ResponseEntity<Item> addImage(@PathVariable String itemId,
                                          @RequestParam("file")MultipartFile file) throws Exception {
